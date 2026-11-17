@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veterinaria Patitas Suaves | Sistema de Registro y Tienda</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        celeste: {
+                            DEFAULT: '#00a8cc',
+                            dark: '#0088a3',
+                            light: '#e0f7fa',
+                            soft: '#f0fbff'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Estilos personalizados para pestañas y impresión */
+        .tab-btn-active {
+            background-color: #ffffff;
+            color: #374151;
+            border-color: #dee2e6 #dee2e6 #ffffff;
+            font-weight: 600;
+        }
+        .tab-btn-inactive {
+            color: #00a8cc;
+            border-color: transparent;
+        }
+        .tab-btn-inactive:hover {
+            color: #0088a3;
+            background-color: #f0fbff;
+        }
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #print-area, #print-area * {
+                visibility: visible;
+            }
+            #print-area {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                background: white;
+                padding: 20px;
+            }
+            .no-print {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800 font-sans antialiased flex flex-col min-h-screen">
+
+    <!-- NOTIFICACIÓN FLOTANTE (Reemplazo elegante de alert) -->
+    <div id="toast-notification" class="fixed top-20 right-5 z-[100] hidden transform transition-all duration-300 translate-y-2 opacity-0">
+        <div class="bg-white border-2 border-[#00a8cc] text-[#0088a3] px-5 py-3.5 rounded-xl shadow-xl flex items-center gap-3 font-semibold text-sm">
+            <i id="toast-icon" class="fa-solid fa-circle-check text-[#00a8cc] text-lg"></i>
+            <span id="toast-message">Operación realizada con éxito</span>
+        </div>
+    </div>
+
+    <!-- MODAL DE CONFIRMACIÓN PERSONALIZADO (Reemplazo de confirm) -->
+    <div id="confirm-modal" class="fixed inset-0 z-[90] hidden bg-black/50 backdrop-blur-xs flex items-center justify-center p-4">
+        <div class="bg-white border-2 border-[#00a8cc] rounded-2xl max-w-sm w-full p-6 shadow-2xl">
+            <div class="flex items-center gap-3 text-red-600 mb-3">
+                <i class="fa-solid fa-triangle-exclamation text-2xl"></i>
+                <h3 class="text-lg font-extrabold text-gray-800">Confirmar Eliminación</h3>
+            </div>
+            <p id="confirm-text" class="text-sm text-gray-600 mb-
